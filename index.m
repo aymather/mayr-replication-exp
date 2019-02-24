@@ -43,3 +43,6 @@ trialseq = trialseq(settings, id);
 
 % Enter experiment:
 trialseq = backend(trialseq, settings, id);
+
+% Finished :)
+% Template created by: Alec Mather https://github.com/aymather
