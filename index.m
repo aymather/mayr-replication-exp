@@ -14,6 +14,7 @@
 % Clear workspace
 clear;clc;
 commandwindow;
+PsychPortAudio('Close');
 
 % MacOS Specific
 % Uncomment the following line if you are testing on a mac, otherwise
