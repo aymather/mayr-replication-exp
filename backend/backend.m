@@ -15,7 +15,7 @@ function trialseq = backend(trialseq, settings, id)
         
         % Begin timer / set time tracker
         if it == 1; beginTime = GetSecs; end
-        trialseq(it, id.time) = beginTime - GetSecs;
+        trialseq(it, id.time) = GetSecs - beginTime;
         
         % Draw fixation
         glo_fixation(ow, settings.durations.fixation);
