@@ -27,6 +27,35 @@ function trialseq = trialseq(settings, id)
         
     end
     
+    % Get all the correct response locations
+    for it = 1:trials
+        if trialseq(it, id.loc) == 1 && trialseq(it, id.cue) == 1
+            trialseq(it,id.c_resp) = 4;
+        elseif trialseq(it, id.loc) == 1 && trialseq(it, id.cue) == 2
+            trialseq(it,id.c_resp) = 2;
+        elseif trialseq(it, id.loc) == 1 && trialseq(it, id.cue) == 3
+            trialseq(it,id.c_resp) = 3;
+        elseif trialseq(it, id.loc) == 2 && trialseq(it, id.cue) == 1
+            trialseq(it,id.c_resp) = 3;
+        elseif trialseq(it, id.loc) == 2 && trialseq(it, id.cue) == 2
+            trialseq(it,id.c_resp) = 1;
+        elseif trialseq(it, id.loc) == 2 && trialseq(it, id.cue) == 3
+            trialseq(it,id.c_resp) = 4;
+        elseif trialseq(it, id.loc) == 3 && trialseq(it, id.cue) == 1
+            trialseq(it,id.c_resp) = 2;
+        elseif trialseq(it, id.loc) == 3 && trialseq(it, id.cue) == 2
+            trialseq(it,id.c_resp) = 4;
+        elseif trialseq(it, id.loc) == 3 && trialseq(it, id.cue) == 3
+            trialseq(it,id.c_resp) = 1;
+        elseif trialseq(it, id.loc) == 4 && trialseq(it, id.cue) == 1
+            trialseq(it,id.c_resp) = 1;
+        elseif trialseq(it, id.loc) == 4 && trialseq(it, id.cue) == 2
+            trialseq(it,id.c_resp) = 3;
+        elseif trialseq(it, id.loc) == 4 && trialseq(it, id.cue) == 3
+            trialseq(it,id.c_resp) = 2;
+        end
+    end
+    
     % Place in trial numbers into your first column: id.trialNum
     for it = 1:trials
         trialseq(it, id.trialNum) = it;

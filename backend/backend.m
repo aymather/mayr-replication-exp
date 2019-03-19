@@ -1,4 +1,4 @@
-function trialseq = backend(trialseq, settings, id)
+function trialseq = backend(trialseq, settings, id, data)
 
     % Shortnames
     trials = settings.trials.number_of_trials;
@@ -43,8 +43,16 @@ function trialseq = backend(trialseq, settings, id)
             WaitSecs(0.001); % prevent overload
         end
         
+        if trialseq(it,id.resp) == 0
+            trialseq(it,id.acc) = 999; % miss
+        elseif trialseq(it,id.c_resp) == trialseq(it,id.resp)
+            trialseq(it,id.acc) = 1; % corr
+        elseif trialseq(it,id.c_resp) ~= trialseq(it,id.resp)
+            trialseq(it,id.acc) = 2;
+        end
+        
         % Save
-        save(fullfile(settings.files.outfolder,settings.files.outfile),'trialseq','settings');
+        save(fullfile(settings.files.outfolder,settings.files.outfile),'trialseq','settings','data');
         
         % Block break / feedback
         if it == trials || trialseq(it,id.block) ~= trialseq(it+1,id.block)

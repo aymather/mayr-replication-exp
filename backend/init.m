@@ -30,7 +30,7 @@ function settings = init(data, name)
     settings.durations.offset = .3;
     settings.durations.fixation = 1; % duration of trial start fixation
     settings.durations.iti = 1; % duration of inter-trial-interval
-    settings.durations.response = 1;
+    settings.durations.response = 3;
     
     % Keys / cues
     settings.keys = [data.topleft, data.topright, data.bottomright, data.bottomleft]; % {4: topleft, 5: topright, 2: bottomright, 1: bottomleft}

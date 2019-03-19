@@ -43,7 +43,10 @@ id = columns;
 trialseq = trialseq(settings, id);
 
 % Enter experiment:
-trialseq = backend(trialseq, settings, id);
+trialseq = backend(trialseq, settings, id, data);
+
+% Save
+save(fullfile(settings.files.outfolder, settings.files.outfile), 'trialseq', 'settings', 'data', 'id');
 
 % Finished :)
 % Template created by: Alec Mather https://github.com/aymather

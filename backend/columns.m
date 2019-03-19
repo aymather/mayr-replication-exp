@@ -6,8 +6,9 @@ function id = columns
     id.time = 3;         % time tracker
     id.loc = 4;          % original dot location {1: topleft, 2: topright, 3: bottomright, 4: bottomleft}
     id.cue = 5;          % trial type {1: vertical, 2: horizontal, 3: diagonal}
-    id.resp = 6;         % response location {1: topleft, 2: topright, 3: bottomright, 4: bottomleft}
-    id.rt = 7;           % reaction time
-    id.acc = 8;          % accuracy code
+    id.c_resp = 6;       % location of the correct response location {1: topleft, 2: topright, 3: bottomright, 4: bottomleft}
+    id.resp = 7;         % response location {1: topleft, 2: topright, 3: bottomright, 4: bottomleft}
+    id.rt = 8;           % reaction time
+    id.acc = 9;          % accuracy code
     
 end
