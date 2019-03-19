@@ -17,12 +17,13 @@ function trialseq = trialseq(settings, id)
         block(:,id.block) = ib;
         
         % Assign a bunch of random values (1:4) to trials
-        r = randi([1 4], size(block,1), 1);
-        block(:,id.loc) = settings.keys(r)';
+        block(:,id.loc) = randi([1 4], size(block,1), 1);
+        
+        % Assign random values to cues
+        block(:,id.cue) = randi([1 3], size(block,1), 1);
         
         % Append each block to total trial sequence matrix
         trialseq = [trialseq; block];
-        
         
     end
     

@@ -22,14 +22,19 @@ function settings = init(data, name)
     settings.layout.boxpen = 3;
     
     % Sizing
-    settings.size.box = 5; % arbitrary multiplier for DrawHollowSquare() function
-    settings.size.dotradius = 60; % px
+    settings.size.box = 10; % arbitrary multiplier for DrawHollowSquare() function
+    settings.size.dotradius = 90; % px
     settings.size.branchbase = 30; % baseline size of a square BEFORE multiplier in px
     
     % DURATIONS
     settings.durations.offset = .3;
     settings.durations.fixation = 1; % duration of trial start fixation
     settings.durations.iti = 1; % duration of inter-trial-interval
+    settings.durations.response = 1;
+    
+    % Keys / cues
+    settings.keys = [4,5,2,1]; % {4: topleft, 5: topright, 2: bottomright, 1: bottomleft}
+    se
     
     % KEYBOARD / MOUSE
     HideCursor; ListenChar(2);
@@ -43,10 +48,15 @@ function settings = init(data, name)
     
     % Locations
     settings.loc.box = [settings.screen.outwindowdims(3)/2,settings.screen.outwindowdims(4)/2];
-    len = (settings.size.branchbase * settings.size.box) * 2/3;
-    settings.loc.circle = [...
-            
-        ];
+    len = (settings.size.branchbase * settings.size.box) * 2/3; % "branch size" of aquiring dot locations
+    center = settings.loc.box;
+    x = 1; y = 2;
+    settings.loc.circle = {...
+            [center(x)+len,center(y)+len], ... top left
+            [center(x)-len,center(y)+len], ... top right
+            [center(x)-len,center(y)-len], ... bottom right
+            [center(x)+len,center(y)-len] % bottom left
+        };
 
     % PREP FONTS
     Screen('TextFont',settings.screen.outwindow,'Avenir'); % arial

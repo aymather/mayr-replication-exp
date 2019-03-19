@@ -1,13 +1,14 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
-%   Name: 
-%   Date:
+%   Project Manager: Ben Rangel
+%   Developer: Alec Mather
+%   Date: 3.19.19
 %   Email:
-%   Supervisor:
-%   University:
-%   Matlab version:
-%   Description:
-%   Other technologies used:
+%   Supervisor: Jan Wessel
+%   University: University of Iowa
+%   Matlab version: 2017b
+%   Description: 
+%   Other technologies used: PsychToolBox
 %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 

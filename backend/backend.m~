@@ -17,30 +17,28 @@ function trialseq = backend(trialseq, settings, id)
         trialseq(it, id.time) = GetSecs - beginTime;
         
         % Draw Box
-        DrawHollowSquare(settings,settings.loc.box,settings.size.box);
+        DrawHollowSquare(settings, settings.loc.box, settings.size.box);
+        DrawFormattedText(ow, settings.cues{trialseq(it,id.cue)},'center',owd(4)/9,settings.color.font);
         Screen('Flip',ow);
         WaitSecs(settings.durations.offset);
         
         % Draw Box with dot
         DrawHollowSquare(settings,settings.loc.box,settings.size.box);
-        dotloc = randi([1 4],1,1);
+        DrawFormattedText(ow, settings.cues{trialseq(it,id.cue)},'center',owd(4)/9,settings.color.font);
         Screen('DrawDots', ow, ...
-            settings.loc.circle{dotloc}, ...
+            settings.loc.circle{trialseq(it,id.loc)}, ...
             settings.size.dotradius, ...
             settings.color.dot, ...
             [], 1);
-        Screen('Flip',ow);
+        starttime = Screen('Flip',ow);
         
         % Wait for response
-        while GetSecs - starttime <= duration
+        while GetSecs - starttime <= settings.durations.response
             [~,~,keycode] = KbCheck(-1);
-            if KbName(keycode) == respKeys{1}
-                resp = 1;
-                rt = GetSecs - starttime;
-                break
-            elseif KbName(keycode) == respKeys{2}
-                resp = 2;
-                rt = GetSecs - starttime;
+            if ismember(KbName(keycode),settings.keys)
+                trialseq(it,id.rt) = GetSecs - starttime;
+                keyboard
+                trialseq(it,id.resp) = find(strcmp(settings.keys, KbName(keycode)));
                 break
             end
             WaitSecs(0.001); % prevent overload

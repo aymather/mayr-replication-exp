@@ -17,12 +17,14 @@ function trialseq = backend(trialseq, settings, id)
         trialseq(it, id.time) = GetSecs - beginTime;
         
         % Draw Box
-        DrawHollowSquare(settings,settings.loc.box,settings.size.box);
+        DrawHollowSquare(settings, settings.loc.box, settings.size.box);
+        DrawFormattedText(ow, settings.cues{trialseq(it,id.cue)},'center',owd(4)/9,settings.color.font);
         Screen('Flip',ow);
         WaitSecs(settings.durations.offset);
         
         % Draw Box with dot
         DrawHollowSquare(settings,settings.loc.box,settings.size.box);
+        DrawFormattedText(ow, settings.cues{trialseq(it,id.cue)},'center',owd(4)/9,settings.color.font);
         Screen('DrawDots', ow, ...
             settings.loc.circle{trialseq(it,id.loc)}, ...
             settings.size.dotradius, ...
@@ -35,7 +37,7 @@ function trialseq = backend(trialseq, settings, id)
             [~,~,keycode] = KbCheck(-1);
             if ismember(KbName(keycode),settings.keys)
                 trialseq(it,id.rt) = GetSecs - starttime;
-                trialseq(it,id.resp) = str2double(KbName(keycode));
+                trialseq(it,id.resp) = strfind(settings.keys,KbName(keycode));
                 break
             end
             WaitSecs(0.001); % prevent overload

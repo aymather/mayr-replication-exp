@@ -32,8 +32,9 @@ function settings = init(data, name)
     settings.durations.iti = 1; % duration of inter-trial-interval
     settings.durations.response = 1;
     
-    % Keys
-    settings.keys = [4,5,2,1]; % {4: topleft, 5: topright, 2: bottomright, 1: bottomleft}
+    % Keys / cues
+    settings.keys = [data.topleft, data.topright, data.bottomright, data.bottomleft]; % {4: topleft, 5: topright, 2: bottomright, 1: bottomleft}
+    settings.cues = {'Vertical','Horizontal','Diagonal'};
     
     % KEYBOARD / MOUSE
     HideCursor; ListenChar(2);
@@ -46,15 +47,17 @@ function settings = init(data, name)
     Priority(MaxPriority(settings.screen.outwindow)); % prioritize
     
     % Locations
-    settings.loc.box = [settings.screen.outwindowdims(3)/2,settings.screen.outwindowdims(4)/2];
+    settings.loc.box = [settings.screen.outwindowdims(3)/2,settings.screen.outwindowdims(4)/2]; % Box
     len = (settings.size.branchbase * settings.size.box) * 2/3; % "branch size" of aquiring dot locations
     center = settings.loc.box;
     x = 1; y = 2;
+    
+    % Circle locations array
     settings.loc.circle = {...
-            [center(x)+len,center(y)+len], ... top left
-            [center(x)-len,center(y)+len], ... top right
-            [center(x)-len,center(y)-len], ... bottom right
-            [center(x)+len,center(y)-len] % bottom left
+            [center(x)-len,center(y)-len], ... top left
+            [center(x)+len,center(y)-len], ... top right
+            [center(x)+len,center(y)+len], ... bottom right
+            [center(x)-len,center(y)+len] % bottom left
         };
 
     % PREP FONTS
