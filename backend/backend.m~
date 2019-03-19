@@ -23,19 +23,24 @@ function trialseq = backend(trialseq, settings, id)
         
         % Draw Box with dot
         DrawHollowSquare(settings,settings.loc.box,settings.size.box);
+        dotloc = randi([1 4],1,1);
         Screen('DrawDots', ow, ...
-            settings.loc.circle{trialseq(it,id.loc)}, ...
+            settings.loc.circle{dotloc}, ...
             settings.size.dotradius, ...
             settings.color.dot, ...
             [], 1);
-        starttime = Screen('Flip',ow);
+        Screen('Flip',ow);
         
         % Wait for response
-        while GetSecs - starttime <= settings.durations.response
+        while GetSecs - starttime <= duration
             [~,~,keycode] = KbCheck(-1);
-            if ismember(KbName(keycode),settings.keys)
-                trialseq(it,id.rt) = GetSecs - starttime;
-                trialseq(it,id.resp) = str2double(KbName(keycode));
+            if KbName(keycode) == respKeys{1}
+                resp = 1;
+                rt = GetSecs - starttime;
+                break
+            elseif KbName(keycode) == respKeys{2}
+                resp = 2;
+                rt = GetSecs - starttime;
                 break
             end
             WaitSecs(0.001); % prevent overload

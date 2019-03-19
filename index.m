@@ -20,7 +20,7 @@ PsychPortAudio('Close');
 % Uncomment the following line if you are testing on a mac, otherwise
 % do not use this line when actually using your experiment.
 
-% Screen('Preference', 'SkipSyncTests', 1);
+Screen('Preference', 'SkipSyncTests', 1);
 
 % Enter the name of your project here to get started.
 % If you change this, you must also change the name of this shell script
